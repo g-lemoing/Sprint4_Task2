@@ -20,32 +20,22 @@ public class FruitController {
         return fruitService.findAll();
     }
 
-    @GetMapping("/getOne/{id}")
+    @GetMapping(value = {"/getOne/{id}", "/getOne/", "/getOne"})
     public ResponseEntity<Fruit> getFruit(@PathVariable int id){
         return new ResponseEntity<>(fruitService.getReferenceById(id), HttpStatus.OK);
-    }
-
-    @GetMapping("/getOne")
-    public ResponseEntity<Object> getFruitMissingParameter(){
-        return new ResponseEntity<>("ID parameter is mandatory", HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/add")
     public ResponseEntity<Fruit> addFruit(@RequestBody Fruit fruit){
         return new ResponseEntity<>(fruitService.save(fruit), HttpStatus.CREATED);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping(value = {"/update/{id}", "/update/", "/update"})
     public ResponseEntity<Fruit> updateFruit(@PathVariable int id, @RequestBody Fruit fruit){
         Fruit updatedFruit = fruitService.update(id, fruit);
         return new ResponseEntity<>(updatedFruit, HttpStatus.OK);
     }
 
-    @PutMapping("/update/")
-    public ResponseEntity<Object> updateFruitMissingParameter(@RequestBody Fruit fruit){
-        return new ResponseEntity<>("ID parameter is mandatory", HttpStatus.BAD_REQUEST);
-
-    }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(value = {"/delete/{id}", "/delete/", "delete"})
     public ResponseEntity<Fruit> deleteFruit(@PathVariable int id){
         fruitService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
