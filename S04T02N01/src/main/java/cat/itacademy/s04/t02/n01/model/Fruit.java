@@ -7,13 +7,13 @@ import jakarta.persistence.*;
 public class Fruit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    private int id;
 
     @Column(length = 50, name = "name")
-    String name;
+    private String name;
 
     @Column(name = "kg_Qty")
-    int kgQty;
+    private int kgQty;
 
     public int getId() {
         return id;
